@@ -1,0 +1,16 @@
+:root {
+  --primary-blue: #003366; /* Centum Blue */
+  --bg-gray: #f4f7f6;
+  --text-dark: #333;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background-color: var(--bg-gray);
+  color: var(--text-dark);
+}
+
+* {
+  box-sizing: border-box;
+}
