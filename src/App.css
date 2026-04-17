@@ -8,6 +8,12 @@
 body {
   margin: 0;
   background-color: var(--bg);
+  /* Added beautiful tech background */
+  background-image: linear-gradient(rgba(248, 250, 251, 0.9), rgba(248, 250, 251, 0.9)), 
+                    url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: var(--text);
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
@@ -78,7 +84,7 @@ body {
   color: white;
   display: flex;
   justify-content: center;
-  gap: 100px;
+  gap: 50px; /* Reduced gap for more items */
   padding: 50px;
   margin: 50px auto;
   border-radius: 12px;
@@ -86,7 +92,7 @@ body {
   max-width: 900px;
 }
 
-.ticker-item .value { font-size: 3.5rem; font-weight: 800; display: block; }
+.ticker-item .value { font-size: 3rem; font-weight: 800; display: block; }
 .gold-text { color: var(--gold); }
 
 /* Form Elements */
