@@ -19,8 +19,8 @@ function App({ section }) {
     e.preventDefault();
     setStatus('loading');
     
-    // YOUR VERIFIED GOOGLE SCRIPT URL
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwu3px7wlGoh5rObo3D1pVRaWlnSG6__lte0X-VOy3EYvd1y3-G7GW-ZNUuZmAtrA/exec";
+    // YOUR NEW VERIFIED SCRIPT URL
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwM1wHNuhwqvHks0KiY-HKapDMoV7_eSSclLLwPR3PQJd7lpJCHj3Iu89BlQBzsqlee/exec";
 
     try {
       const formData = new FormData(e.target);
@@ -35,44 +35,38 @@ function App({ section }) {
     }
   };
 
+  const HomeIcon = () => (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: '6px'}}>
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+      <polyline points="9 22 9 12 15 12 15 22"></polyline>
+    </svg>
+  );
+
+  const SovereignEmblem = () => (
+    <div className="emblem-container">
+      <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L14.5 9H22L16 13.5L18.5 21L12 17L5.5 21L8 13.5L2 9H9.5L12 2Z" stroke="#C5A059" strokeWidth="1" fill="rgba(197, 160, 89, 0.2)" />
+      </svg>
+    </div>
+  );
+
   const renderContent = () => {
     switch (section) {
       case 'about':
         return (
-          <div className="section-wrap">
+          <div className="section-wrap floating-card">
             <span className="section-title">THE ARCHITECTURE OF POWER</span>
-            <h2 className="anchor-text">Astra (The Reach) + Novara (The Change)</h2>
-            <p className="story-text" style={{borderLeftColor: 'var(--gold)', fontStyle: 'italic'}}>
-              "To predict the future is to control it. To build the infrastructure of the future is to own it."
+            <h2 className="anchor-text">Astra + Novara</h2>
+            <p className="story-text" style={{borderLeft: '2px solid var(--gold)', paddingLeft: '15px', fontStyle: 'italic'}}>
+              "To build the infrastructure of the future is to own it."
             </p>
             <p className="story-text">
               Astranovara is the cold, calculated answer to legacy technical dependence. 
-              Born from the necessity of <strong>Sovereign Logic</strong>, we are the first neural 
-              backbone that refuses to outshine the master, but instead replaces the master's tools entirely. 
-              We are the "New Star"—a fixed point in a chaotic digital sea.
+              Born from the necessity of <strong>Sovereign Logic</strong>.
             </p>
-            
             <div className="mission-grid">
-              <div className="manifesto-item">
-                <h3>Sovereign Autonomy</h3>
-                <p>We provide the fixed point of logic that foreign powers cannot decommission.</p>
-              </div>
-              <div className="manifesto-item">
-                <h3>Absolute Scarcity</h3>
-                <p>100M $STAR. No inflation. No hidden dilution. Pure mathematical control.</p>
-              </div>
-              <div className="manifesto-item">
-                <h3>Dictated Vision</h3>
-                <p>One founder, one direction. Stability through centralized leadership and proprietary IP.</p>
-              </div>
-              <div className="manifesto-item">
-                <h3>Neural Liquidity</h3>
-                <p>Real-time cross-border settlement for logic-compute costs.</p>
-              </div>
-              <div className="manifesto-item">
-                <h3>Physical Infrastructure</h3>
-                <p>Hard-asset nodes deployed in neutral zones for absolute data shielding.</p>
-              </div>
+              <div className="manifesto-item"><h3>Sovereign Autonomy</h3><p>Undecommissionable logic protocols.</p></div>
+              <div className="manifesto-item"><h3>Absolute Scarcity</h3><p>100M $STAR Fixed Supply.</p></div>
             </div>
           </div>
         );
@@ -81,22 +75,17 @@ function App({ section }) {
         return (
           <div className="section-wrap">
             <span className="section-title">HIGH-YIELD INFRASTRUCTURE</span>
-            <h2 className="anchor-text">Assets Worth the Risk.</h2>
+            <h2 className="anchor-text">Active Assets</h2>
             <div className="portfolio-grid">
-              <div className="portfolio-card">
-                <h3>The Logic Plug v1.0</h3>
-                <p>The universal translator for global APIs. It captures a fee from every logic handshake it facilitates.</p>
-                <span className="asset-tag">ACTIVE REVENUE</span>
+              <div className="portfolio-card moving-1">
+                <h3>The Logic Plug</h3>
+                <p>Universal API fee capture engine.</p>
+                <span className="asset-tag">ACTIVE</span>
               </div>
-              <div className="portfolio-card">
-                <h3>Sovereign Cloud Nodes</h3>
-                <p>Hard-asset data centers in neutral zones. Physical infrastructure that cannot be "turned off."</p>
-                <span className="asset-tag">PHYSICAL ASSET</span>
-              </div>
-              <div className="portfolio-card">
-                <h3>$STAR Fuel Reserves</h3>
-                <p>A deflationary asset capped at 100M. Every logic pulse burns fuel, increasing scarcity.</p>
-                <span className="asset-tag">DEFLATIONARY</span>
+              <div className="portfolio-card moving-2">
+                <h3>Cloud Nodes</h3>
+                <p>Neutral zone physical data centers.</p>
+                <span className="asset-tag">PHYSICAL</span>
               </div>
             </div>
           </div>
@@ -104,74 +93,55 @@ function App({ section }) {
 
       case 'investors':
         return (
-          <div className="section-wrap">
-            <span className="section-title">PARTICIPATION GATEWAYS</span>
-            <h2 className="anchor-text">Secure Your Allocation.</h2>
-            
+          <div className="section-wrap floating-card">
+            <h2 className="anchor-text">Secure Allocation</h2>
             {status === 'success' ? (
               <div className="success-msg">
-                <h2 style={{color: 'var(--blue)'}}>TRANSMISSION LOGGED</h2>
-                <p>Your entry has been recorded in the Sovereign Ledger. Finalize your position via the gateways below.</p>
+                <h2 style={{color: 'var(--gold)'}}>TRANSMISSION LOGGED</h2>
+                <p>Your entry is secured in the Sovereign Ledger.</p>
               </div>
             ) : (
               <>
-                <div className="gateway-choice">
+                <div className="gateway-choice" style={{marginBottom: '20px'}}>
                   <div className="choice-box">
                     <h4>Sovereign Individual</h4>
-                    <p>Acquire $STAR utility immediately. 100M Fixed Genesis Supply.</p>
+                    <p>Acquire $STAR utility fuel immediately.</p>
                   </div>
                 </div>
-
                 <form className="sovereign-form" onSubmit={handleFormSubmit}>
                   <input name="Name" type="text" placeholder="FULL NAME / ENTITY" required />
-                  <input name="Email" type="email" placeholder="EMAIL ADDRESS" required />
-                  <input name="Wallet" type="text" placeholder="ETHEREUM WALLET ADDRESS" required />
+                  <input name="Email" type="email" placeholder="ENCRYPTED EMAIL" required />
+                  <input name="Wallet" type="text" placeholder="WALLET ADDRESS" required />
                   <input name="Allocation" type="number" placeholder="CONTRIBUTION (USD)" required />
-                  <input name="Hash" type="text" placeholder="TRANSACTION HASH (IF COMPLETED)" />
-                  
+                  <input name="Hash" type="text" placeholder="TX HASH (OPTIONAL)" />
                   <div className="risk-notice">
-                    <p>Risk is total and non-compensated. 100M Fixed Supply. Finalize protocol entry below.</p>
+                    <p>Risk is total. 100M Fixed Supply. Finalize protocol entry below.</p>
                   </div>
-                  
                   <button type="submit" className="spectacular-btn">
-                    {status === 'loading' ? 'LOGGING TO LEDGER...' : 'GENERATE SECURE GATEWAY'}
+                    {status === 'loading' ? 'LOGGING...' : 'INITIALIZE'}
                   </button>
                 </form>
               </>
             )}
-
             <div className="wallet-reveal">
-              <div className="wallet-box">
-                <span>BITCOIN (BTC)</span>
-                <code>bc1q5cjn0ksznv5lx64vx0k44csent4uuhknkdqn9f</code>
-              </div>
-              <div className="wallet-box">
-                <span>ETH / USDC (ERC-20)</span>
-                <code>0x71f3BFe473C4DC9712fE028D085742d47d4b2C1a</code>
-              </div>
+              <div className="wallet-box"><span>BITCOIN (BTC)</span><code>bc1q5cjn0ksznv5lx64vx0k44csent4uuhknkdqn9f</code></div>
+              <div className="wallet-box"><span>ETH / USDC</span><code>0x71f3BFe473C4DC9712fE028D085742d47d4b2C1a</code></div>
             </div>
           </div>
         );
 
-      default: // HOME
+      default:
         return (
-          <div className="hero-slider">
-            <div className="slide-content">
-              <h1 className="main-logo-text">ASTRANOVARA</h1>
-              <p className="hero-subtitle">UNIVERSAL LOGIC • 100M $STAR SUPPLY</p>
-              <div className="live-ticker-panel">
-                <div className="ticker-item">
-                  <span className="label">LOGIC PULSES</span>
-                  <span className="value">{pulses.toLocaleString()}</span>
-                </div>
-                <div className="ticker-item">
-                  <span className="label">EST. YIELD (USD)</span>
-                  <span className="value gold-text">${profit.toFixed(2)}</span>
-                </div>
-              </div>
-              <Link to="/investors" className="spectacular-btn" style={{textDecoration:'none'}}>SECURE ALLOCATION</Link>
-              <p style={{marginTop:'20px', fontWeight:'800', color:'#d93025', letterSpacing: '2px'}}>Scale Round 1 Closes Strictly: May 17, 2026</p>
+          <div className="hero-slider floating-card">
+            <SovereignEmblem />
+            <h1 className="main-logo-text">ASTRANOVARA</h1>
+            <p className="hero-subtitle">UNIVERSAL LOGIC • 100M SUPPLY</p>
+            <div className="live-ticker-panel">
+              <div className="ticker-item"><span className="label">PULSES</span><span className="value">{pulses.toLocaleString()}</span></div>
+              <div className="ticker-item"><span className="label">YIELD</span><span className="value gold-text">${profit.toFixed(2)}</span></div>
             </div>
+            <Link to="/investors" className="spectacular-btn" style={{textDecoration:'none'}}>SECURE POSITION</Link>
+            <p style={{marginTop:'25px', fontWeight:'800', color:'#ff4d4d', letterSpacing: '2px', fontSize: '0.7rem'}}>Scale Round 1 Closes: May 17, 2026</p>
           </div>
         );
     }
@@ -182,7 +152,7 @@ function App({ section }) {
       <nav className="navbar">
         <Link to="/" className="nav-logo">ASTRANOVARA</Link>
         <div className="nav-links">
-          <Link to="/">HOME</Link>
+          <Link to="/"><HomeIcon />HOME</Link>
           <Link to="/about">ABOUT</Link>
           <Link to="/portfolio">PORTFOLIO</Link>
           <Link to="/investors" className="investor-btn">INVESTORS</Link>
