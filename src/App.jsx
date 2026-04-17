@@ -8,15 +8,14 @@ function App({ section }) {
   const [status, setStatus] = useState('idle');
   const [daysLeft, setDaysLeft] = useState(0);
   const [copied, setCopied] = useState('');
+  const [calcInput, setCalcInput] = useState(1000);
 
   useEffect(() => {
-    // Live Ticker Logic
     const interval = setInterval(() => {
       setPulses(prev => prev + Math.floor(Math.random() * 3));
       setProfit(prev => prev + (Math.random() * 0.05));
     }, 2000);
 
-    // Countdown Logic to May 17, 2026
     const calculateCountdown = () => {
       const target = new Date("May 17, 2026 00:00:00").getTime();
       const now = new Date().getTime();
@@ -54,6 +53,24 @@ function App({ section }) {
   );
 
   const renderContent = () => {
+    // Shared Pricing Logic
+    const launchDate = new Date("2026-04-18");
+    const today = new Date();
+    const diffInDays = Math.floor((today - launchDate) / (1000 * 60 * 60 * 24));
+    
+    let currentPrice, phaseName, nextPrice, progressWidth, daysUntilNext;
+    
+    if (diffInDays <= 14) {
+      currentPrice = 0.10; phaseName = "PHASE 0: GENESIS"; nextPrice = 0.15;
+      progressWidth = (diffInDays / 14) * 100; daysUntilNext = 14 - diffInDays;
+    } else if (diffInDays <= 25) {
+      currentPrice = 0.15; phaseName = "PHASE 1: GROWTH"; nextPrice = 0.25;
+      progressWidth = ((diffInDays - 14) / 11) * 100; daysUntilNext = 25 - diffInDays;
+    } else {
+      currentPrice = 0.25; phaseName = "PHASE 2: FINALITY"; nextPrice = "CLOSED";
+      progressWidth = 100; daysUntilNext = 30 - diffInDays;
+    }
+
     switch (section) {
       case 'about':
         return (
@@ -94,23 +111,6 @@ function App({ section }) {
         );
 
       case 'investors':
-        const launchDate = new Date("2026-04-18");
-        const today = new Date();
-        const diffInDays = Math.floor((today - launchDate) / (1000 * 60 * 60 * 24));
-        
-        let currentPrice, phaseName, nextPrice, progressWidth, daysUntilNext;
-        
-        if (diffInDays <= 14) {
-          currentPrice = "0.10"; phaseName = "PHASE 0: GENESIS"; nextPrice = "0.15";
-          progressWidth = (diffInDays / 14) * 100; daysUntilNext = 14 - diffInDays;
-        } else if (diffInDays <= 25) {
-          currentPrice = "0.15"; phaseName = "PHASE 1: GROWTH"; nextPrice = "0.25";
-          progressWidth = ((diffInDays - 14) / 11) * 100; daysUntilNext = 25 - diffInDays;
-        } else {
-          currentPrice = "0.25"; phaseName = "PHASE 2: FINALITY"; nextPrice = "CLOSED";
-          progressWidth = 100; daysUntilNext = 30 - diffInDays;
-        }
-
         return (
           <div className="section-wrap">
             <h2 className="anchor-text">Secure Allocation</h2>
@@ -122,37 +122,55 @@ function App({ section }) {
               <div className="success-msg" style={{textAlign: 'center', padding: '40px 0'}}>
                 <h2 style={{color: 'var(--gold)', letterSpacing: '4px', fontSize: '2.5rem'}}>THANK YOU</h2>
                 <div style={{height: '1px', background: 'var(--gold)', width: '60px', margin: '20px auto', opacity: 0.5}}></div>
-                <p style={{textTransform: 'uppercase', fontWeight: '800', letterSpacing: '1px', color: 'var(--blue)'}}>
-                  Your transmission is secured in the Sovereign Ledger
-                </p>
+                <p style={{textTransform: 'uppercase', fontWeight: '800', letterSpacing: '1px', color: 'var(--blue)'}}>Your transmission is secured in the Sovereign Ledger</p>
                 <button onClick={() => setStatus('idle')} className="spectacular-btn" style={{maxWidth: '200px', marginTop: '30px', padding: '12px'}}>NEW ENTRY</button>
               </div>
             ) : (
               <>
+                {/* Live Allocation Calculator */}
+                <div className="calculator-box" style={{background: 'var(--blue)', color: 'white', padding: '25px', borderRadius: '8px', marginBottom: '30px', boxShadow: '0 15px 30px rgba(0,43,73,0.3)'}}>
+                  <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                    <div>
+                      <span style={{fontSize: '0.7rem', opacity: 0.8, letterSpacing: '1px'}}>ALLOCATION (USD)</span>
+                      <input 
+                        type="number" 
+                        value={calcInput} 
+                        onChange={(e) => setCalcInput(e.target.value)}
+                        style={{background: 'transparent', border: 'none', borderBottom: '2px solid var(--gold)', color: 'white', fontSize: '2rem', fontWeight: '800', width: '150px', outline: 'none', marginTop: '5px'}}
+                      />
+                    </div>
+                    <div style={{textAlign: 'right'}}>
+                      <span style={{fontSize: '0.7rem', opacity: 0.8, letterSpacing: '1px'}}>ESTIMATED STAR FUEL</span>
+                      <div style={{fontSize: '2.5rem', fontWeight: '900', color: 'var(--gold)'}}>
+                        {(calcInput / currentPrice).toLocaleString()} <small style={{fontSize: '1rem', opacity: 0.6}}>$STAR</small>
+                      </div>
+                    </div>
+                  </div>
+                  <p style={{fontSize: '0.6rem', marginTop: '15px', opacity: 0.6, fontStyle: 'italic'}}>*Calculated at current {phaseName} rate of ${currentPrice.toFixed(2)}</p>
+                </div>
+
                 <div className="investor-layout" style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', marginBottom: '40px'}}>
                   <div className="form-column">
                     <form className="sovereign-form" onSubmit={handleFormSubmit}>
                       <input name="Name" type="text" placeholder="FULL NAME / ENTITY" required />
                       <input name="Email" type="email" placeholder="ENCRYPTED EMAIL" required />
                       <input name="Wallet" type="text" placeholder="YOUR WALLET ADDRESS" required />
-                      <input name="Allocation" type="number" placeholder="CONTRIBUTION (USD)" required />
+                      <input name="Allocation" type="number" value={calcInput} readOnly style={{background: '#f0f0f0', color: '#888'}} />
                       <button type="submit" className="spectacular-btn">{status === 'loading' ? 'LOGGING...' : 'INITIALIZE'}</button>
                     </form>
                   </div>
                   <div className="info-column" style={{background: '#f9f9f9', padding: '30px', borderRadius: '8px', border: '1px solid #eee'}}>
                     <h3 style={{color: 'var(--blue)', fontSize: '0.8rem', letterSpacing: '2px', marginBottom: '15px'}}>{phaseName}</h3>
-                    <div style={{marginBottom: '20px', padding: '20px', background: 'var(--blue)', color: 'white', borderRadius: '8px'}}>
-                      <span style={{fontSize: '0.65rem', opacity: 0.7, display: 'block'}}>CURRENT ACQUISITION RATE</span>
-                      <span style={{fontSize: '1.8rem', fontWeight: '900', color: 'var(--gold)'}}>${currentPrice} <small style={{fontSize: '0.8rem', fontWeight: '400', opacity: 0.8}}>/ $STAR</small></span>
-                      <div style={{marginTop: '15px', height: '6px', background: 'rgba(255,255,255,0.1)', borderRadius: '3px', overflow: 'hidden'}}>
+                    <div style={{marginBottom: '20px', padding: '20px', background: '#fff', border: '1px solid #eee', borderRadius: '8px'}}>
+                      <span style={{fontSize: '0.65rem', opacity: 0.7, display: 'block'}}>NEXT PRICE STEP</span>
+                      <span style={{fontSize: '1.8rem', fontWeight: '900', color: 'var(--gold)'}}>${nextPrice}</span>
+                      <div style={{marginTop: '15px', height: '6px', background: '#eee', borderRadius: '3px', overflow: 'hidden'}}>
                         <div style={{width: `${progressWidth}%`, height: '100%', background: 'var(--gold)', transition: 'width 1s ease'}}></div>
                       </div>
                       <div style={{display: 'flex', justifyContent: 'space-between', marginTop: '8px'}}>
-                        <span style={{fontSize: '0.6rem', color: 'var(--gold)', fontWeight: '700'}}>NEXT STEP: ${nextPrice}</span>
-                        <span style={{fontSize: '0.6rem', opacity: 0.8}}>{daysUntilNext > 0 ? `${daysUntilNext} DAYS LEFT` : 'FINAL PHASE'}</span>
+                        <span style={{fontSize: '0.6rem', color: '#666'}}>{daysUntilNext} DAYS UNTIL ADJUSTMENT</span>
                       </div>
                     </div>
-                    <p style={{fontSize: '0.8rem', color: '#666', lineHeight: '1.5'}}>Allocations during {phaseName} receive maximum weight. $STAR is allocated at settlement price.</p>
                   </div>
                 </div>
                 <div className="risk-disclosure-box" style={{border: '1px solid #d93025', padding: '25px', background: '#fff5f5', borderRadius: '4px', marginBottom: '40px'}}>
@@ -161,6 +179,7 @@ function App({ section }) {
                 </div>
               </>
             )}
+
             <div className="wallet-reveal">
               <div className="wallet-box" onClick={() => copyToClipboard('bc1q5cjn0ksznv5lx64vx0k44csent4uuhknkdqn9f', 'BTC')} style={{cursor: 'pointer'}}>
                 <span>BITCOIN (BTC) - CLICK TO COPY</span>
