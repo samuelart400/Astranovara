@@ -11,11 +11,13 @@ function App({ section }) {
   const [calcInput, setCalcInput] = useState(1000);
 
   useEffect(() => {
+    // Live Pulse Simulation
     const interval = setInterval(() => {
       setPulses(prev => prev + Math.floor(Math.random() * 3));
       setProfit(prev => prev + (Math.random() * 0.05));
     }, 2000);
 
+    // Countdown Logic to May 17, 2026
     const calculateCountdown = () => {
       const target = new Date("May 17, 2026 00:00:00").getTime();
       const now = new Date().getTime();
@@ -44,16 +46,8 @@ function App({ section }) {
     setTimeout(() => setCopied(''), 2000);
   };
 
-  const SovereignEmblem = () => (
-    <div className="emblem-container" style={{textAlign: 'center', marginBottom: '20px'}}>
-      <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L14.5 9H22L16 13.5L18.5 21L12 17L5.5 21L8 13.5L2 9H9.5L12 2Z" stroke="#C5A059" strokeWidth="1" fill="rgba(197, 160, 89, 0.2)" />
-      </svg>
-    </div>
-  );
-
   const renderContent = () => {
-    // Shared Pricing Logic
+    // FOUNDER-FIRST PRICING LOGIC ($0.14 START)
     const launchDate = new Date("2026-04-18");
     const today = new Date();
     const diffInDays = Math.floor((today - launchDate) / (1000 * 60 * 60 * 24));
@@ -61,13 +55,13 @@ function App({ section }) {
     let currentPrice, phaseName, nextPrice, progressWidth, daysUntilNext;
     
     if (diffInDays <= 14) {
-      currentPrice = 0.10; phaseName = "PHASE 0: GENESIS"; nextPrice = 0.15;
+      currentPrice = 0.14; phaseName = "PHASE 0: GENESIS"; nextPrice = 0.22;
       progressWidth = (diffInDays / 14) * 100; daysUntilNext = 14 - diffInDays;
     } else if (diffInDays <= 25) {
-      currentPrice = 0.15; phaseName = "PHASE 1: GROWTH"; nextPrice = 0.25;
+      currentPrice = 0.22; phaseName = "PHASE 1: GROWTH"; nextPrice = 0.35;
       progressWidth = ((diffInDays - 14) / 11) * 100; daysUntilNext = 25 - diffInDays;
     } else {
-      currentPrice = 0.25; phaseName = "PHASE 2: FINALITY"; nextPrice = "CLOSED";
+      currentPrice = 0.35; phaseName = "PHASE 2: FINALITY"; nextPrice = "LOCKED";
       progressWidth = 100; daysUntilNext = 30 - diffInDays;
     }
 
@@ -78,14 +72,13 @@ function App({ section }) {
             <span className="section-title">CORPORATE SYNOPSIS</span>
             <h2 className="anchor-text">The Astranovara Mandate</h2>
             <p className="story-text">
-              <strong>The Goal:</strong> To secure 10M USD in liquidity to establish the first universal "Neutral Zone" logic network. We are replacing fragile, dependent systems with a singular, sovereign backbone.
+              <strong>The Goal:</strong> 10M USD Liquidity Capture. Establishing a universal "Neutral Zone" logic network to replace fragile, dependent infrastructures.
             </p>
             <div className="mission-grid">
-              <div className="manifesto-item"><h3>Systemic Priority</h3><p>Nodes in neutral zones ensure your infrastructure is your own, permanently.</p></div>
-              <div className="manifesto-item"><h3>Genesis Supply</h3><p>Mathematical certainty through 100M $STAR. The only fuel for Logic Pulses.</p></div>
-              <div className="manifesto-item"><h3>Market Integration</h3><p>Logic Plug works silently within existing APIs to capture global transaction flow.</p></div>
-              <div className="manifesto-item"><h3>Global Settlement</h3><p>Instant cross-border settlement for any API handshake, removing middlemen.</p></div>
-              <div className="manifesto-item"><h3>Infrastructure Core</h3><p>Physical hard-asset nodes. We own the iron and the air between the data.</p></div>
+              <div className="manifesto-item"><h3>Systemic Priority</h3><p>Neutral zone nodes ensure your infrastructure is sovereign and permanent.</p></div>
+              <div className="manifesto-item"><h3>Genesis Supply</h3><p>Fixed 100M $STAR. 70M allocated to early liquidity providers.</p></div>
+              <div className="manifesto-item"><h3>Logic Integration</h3><p>Silent API pulse capture for global transaction flow.</p></div>
+              <div className="manifesto-item"><h3>Hard Assets</h3><p>Physical data centers in offshore jurisdictions. Real-world resilience.</p></div>
             </div>
           </div>
         );
@@ -95,16 +88,30 @@ function App({ section }) {
           <div className="section-wrap">
             <span className="section-title">ACTIVE INFRASTRUCTURE</span>
             <h2 className="anchor-text">Yield Assets</h2>
-            <div className="portfolio-grid">
-              <div className="portfolio-card">
-                <h3>The Logic Plug</h3>
-                <p>Universal API fee capture engine.</p>
-                <span className="asset-tag">ACTIVE REVENUE</span>
+            <div className="portfolio-grid" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px', marginTop: '30px'}}>
+              <div className="portfolio-card" style={{background: '#f9f9f9', padding: '30px', borderRadius: '8px', border: '1px solid #eee'}}>
+                <h3 style={{color: 'var(--blue)', fontSize: '1.2rem', marginBottom: '10px'}}>The Logic Plug</h3>
+                <p style={{fontSize: '0.85rem', color: '#666', lineHeight: '1.6'}}>Universal API fee capture engine. Intercepts micro-fees across global cross-border transmissions.</p>
+                <div style={{marginTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                    <span className="asset-tag" style={{background: 'var(--blue)', color: 'white', padding: '5px 10px', fontSize: '0.6rem', borderRadius: '4px', fontWeight: 'bold'}}>ACTIVE REVENUE</span>
+                    <span style={{color: 'var(--gold)', fontWeight: 'bold', fontSize: '0.8rem'}}>+14.2% YIELD</span>
+                </div>
               </div>
-              <div className="portfolio-card">
-                <h3>Sovereign Nodes</h3>
-                <p>Physical data centers in offshore jurisdictions.</p>
-                <span className="asset-tag">HARD ASSET</span>
+              <div className="portfolio-card" style={{background: '#f9f9f9', padding: '30px', borderRadius: '8px', border: '1px solid #eee'}}>
+                <h3 style={{color: 'var(--blue)', fontSize: '1.2rem', marginBottom: '10px'}}>Sovereign Nodes</h3>
+                <p style={{fontSize: '0.85rem', color: '#666', lineHeight: '1.6'}}>Physical hardware clusters in offshore jurisdictions. Provides the "Logic" backbone for the network.</p>
+                <div style={{marginTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                    <span className="asset-tag" style={{background: '#555', color: 'white', padding: '5px 10px', fontSize: '0.6rem', borderRadius: '4px', fontWeight: 'bold'}}>HARD ASSET</span>
+                    <span style={{color: '#888', fontSize: '0.8rem'}}>98% CAPACITY</span>
+                </div>
+              </div>
+              <div className="portfolio-card" style={{background: '#f9f9f9', padding: '30px', borderRadius: '8px', border: '1px solid #eee'}}>
+                <h3 style={{color: 'var(--blue)', fontSize: '1.2rem', marginBottom: '10px'}}>Stability Vault</h3>
+                <p style={{fontSize: '0.85rem', color: '#666', lineHeight: '1.6'}}>A 30,000,000 $STAR buffer designed to maintain protocol equilibrium and absorb market volatility.</p>
+                <div style={{marginTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                    <span className="asset-tag" style={{background: '#dcdcdc', color: '#555', padding: '5px 10px', fontSize: '0.6rem', borderRadius: '4px', fontWeight: 'bold'}}>SYSTEMIC BUFFER</span>
+                    <span style={{color: '#888', fontSize: '0.8rem'}}>LOCKED</span>
+                </div>
               </div>
             </div>
           </div>
@@ -121,13 +128,11 @@ function App({ section }) {
             {status === 'success' ? (
               <div className="success-msg" style={{textAlign: 'center', padding: '40px 0'}}>
                 <h2 style={{color: 'var(--gold)', letterSpacing: '4px', fontSize: '2.5rem'}}>THANK YOU</h2>
-                <div style={{height: '1px', background: 'var(--gold)', width: '60px', margin: '20px auto', opacity: 0.5}}></div>
-                <p style={{textTransform: 'uppercase', fontWeight: '800', letterSpacing: '1px', color: 'var(--blue)'}}>Your transmission is secured in the Sovereign Ledger</p>
+                <p style={{textTransform: 'uppercase', fontWeight: '800', color: 'var(--blue)'}}>Transmission secured in the Sovereign Ledger</p>
                 <button onClick={() => setStatus('idle')} className="spectacular-btn" style={{maxWidth: '200px', marginTop: '30px', padding: '12px'}}>NEW ENTRY</button>
               </div>
             ) : (
               <>
-                {/* Live Allocation Calculator */}
                 <div className="calculator-box" style={{background: 'var(--blue)', color: 'white', padding: '25px', borderRadius: '8px', marginBottom: '30px', boxShadow: '0 15px 30px rgba(0,43,73,0.3)'}}>
                   <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                     <div>
@@ -142,11 +147,10 @@ function App({ section }) {
                     <div style={{textAlign: 'right'}}>
                       <span style={{fontSize: '0.7rem', opacity: 0.8, letterSpacing: '1px'}}>ESTIMATED STAR FUEL</span>
                       <div style={{fontSize: '2.5rem', fontWeight: '900', color: 'var(--gold)'}}>
-                        {(calcInput / currentPrice).toLocaleString()} <small style={{fontSize: '1rem', opacity: 0.6}}>$STAR</small>
+                        {Math.floor(calcInput / currentPrice).toLocaleString()} <small style={{fontSize: '1rem', opacity: 0.6}}>$STAR</small>
                       </div>
                     </div>
                   </div>
-                  <p style={{fontSize: '0.6rem', marginTop: '15px', opacity: 0.6, fontStyle: 'italic'}}>*Calculated at current {phaseName} rate of ${currentPrice.toFixed(2)}</p>
                 </div>
 
                 <div className="investor-layout" style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', marginBottom: '40px'}}>
@@ -173,10 +177,6 @@ function App({ section }) {
                     </div>
                   </div>
                 </div>
-                <div className="risk-disclosure-box" style={{border: '1px solid #d93025', padding: '25px', background: '#fff5f5', borderRadius: '4px', marginBottom: '40px'}}>
-                  <h4 style={{color: '#d93025', marginTop: 0, letterSpacing: '2px', fontSize: '0.8rem'}}>RISK DISCLOSURE & JURISDICTION</h4>
-                  <p style={{fontSize: '0.75rem', color: '#444', lineHeight: '1.6'}}><strong>Excluded:</strong> USA, China, North Korea, Iran, Syria, Cuba. Absolute capital risk. No compensation mechanism exists.</p>
-                </div>
               </>
             )}
 
@@ -198,7 +198,6 @@ function App({ section }) {
       default:
         return (
           <div className="hero-slider">
-            <SovereignEmblem />
             <h1 className="main-logo-text">ASTRANOVARA</h1>
             <p className="hero-subtitle">UNIVERSAL LOGIC • 100M SUPPLY</p>
             <div className="live-ticker-panel">
@@ -216,7 +215,12 @@ function App({ section }) {
     <div className="app-container">
       <nav className="navbar">
         <Link to="/" className="nav-logo">ASTRANOVARA</Link>
-        <div className="nav-links"><Link to="/">HOME</Link><Link to="/about">ABOUT</Link><Link to="/portfolio">PORTFOLIO</Link><Link to="/investors" className="investor-btn">INVESTORS</Link></div>
+        <div className="nav-links">
+          <Link to="/">HOME</Link>
+          <Link to="/about">ABOUT</Link>
+          <Link to="/portfolio">PORTFOLIO</Link>
+          <Link to="/investors" className="investor-btn">INVESTORS</Link>
+        </div>
       </nav>
       <main className="main-stage">{renderContent()}</main>
     </div>
