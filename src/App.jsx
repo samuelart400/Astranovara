@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react'; // Added hooks
 import { Link } from 'react-router-dom';
 import './App.css';
 
 function App({ section }) {
-  // THE ENGINE: Handles the logic for our sovereign portal
+  // 1. LIVE SIMULATOR STATE
+  const [profit, setProfit] = useState(0);
+  const [pulses, setPulses] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Simulate micro-tolls ($0.005 per logic pulse)
+      setPulses(prev => prev + Math.floor(Math.random() * 5) + 1);
+      setProfit(prev => prev + (Math.random() * 0.15));
+    }, 1500);
+    return () => clearInterval(interval);
+  }, []);
+
   const renderContent = () => {
     switch (section) {
       case 'about':
@@ -75,12 +87,29 @@ function App({ section }) {
           </div>
         );
 
-      default: // HOME PAGE
+      default: // HOME PAGE (NOW WITH LIVE SIMULATOR)
         return (
           <div className="hero-slider">
             <div className="slide-content">
               <h1>The Last API Bridge You'll Ever Build</h1>
               <p>Universal Logic. Neural Liquidity. Sovereign Profit.</p>
+              
+              {/* LIVE COUNTER PANEL */}
+              <div className="live-ticker-panel">
+                <div className="ticker-item">
+                  <span className="label">LOGIC PULSES</span>
+                  <span className="value">{pulses.toLocaleString()}</span>
+                </div>
+                <div className="ticker-item">
+                  <span className="label">EST. REVENUE (USD)</span>
+                  <span className="value gold-text">${profit.toFixed(2)}</span>
+                </div>
+                <div className="ticker-item">
+                  <span className="label">SYSTEM STATUS</span>
+                  <span className="value status-green">SOVEREIGN</span>
+                </div>
+              </div>
+
               <Link to="/about" className="spectacular-btn">ENTER THE FORTRESS</Link>
             </div>
           </div>
