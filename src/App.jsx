@@ -12,14 +12,12 @@ function App({ section }) {
   const [txLog, setTxLog] = useState('INITIALIZING...');
 
   useEffect(() => {
-    // Live Pulse & TX Simulation
     const interval = setInterval(() => {
       setPulses(prev => prev + Math.floor(Math.random() * 3));
       setProfit(prev => prev + (Math.random() * 0.05));
       setTxLog(`> ${Math.random().toString(36).substring(7).toUpperCase()}: $${(Math.random()*100).toFixed(2)} CAPTURED`);
     }, 2000);
 
-    // Countdown Logic to May 17, 2026
     const calculateCountdown = () => {
       const target = new Date("May 17, 2026 00:00:00").getTime();
       const now = new Date().getTime();
@@ -48,7 +46,6 @@ function App({ section }) {
     setTimeout(() => setCopied(''), 2000);
   };
 
-  // Logic Helpers
   const launchDate = new Date("2026-04-18");
   const today = new Date();
   const diffInDays = Math.floor((today - launchDate) / (1000 * 60 * 60 * 24));
@@ -72,9 +69,7 @@ function App({ section }) {
           <div className="section-wrap">
             <span className="section-title">CORPORATE SYNOPSIS</span>
             <h2 className="anchor-text">The Astranovara Mandate</h2>
-            <p className="story-text">
-              <strong>The Goal:</strong> 10M USD Liquidity Capture. Establishing a universal "Neutral Zone" logic network to replace fragile, dependent infrastructures.
-            </p>
+            <p className="story-text"><strong>The Goal:</strong> 10M USD Liquidity Capture. Establishing a universal "Neutral Zone" logic network to replace fragile, dependent infrastructures.</p>
             <div className="mission-grid">
               <div className="manifesto-item"><h3>Systemic Priority</h3><p>Neutral zone nodes ensure your infrastructure is sovereign and permanent.</p></div>
               <div className="manifesto-item"><h3>Genesis Supply</h3><p>Fixed 100M $STAR. 70M allocated to early liquidity providers.</p></div>
@@ -98,24 +93,24 @@ function App({ section }) {
                    <div style={{color: '#fff', fontSize: '0.7rem', fontFamily: 'monospace'}}>{txLog}</div>
                 </div>
                 <div style={{marginTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                    <span className="asset-tag" style={{background: 'var(--blue)', color: 'white', padding: '5px 10px', fontSize: '0.6rem', borderRadius: '4px', fontWeight: 'bold'}}>ACTIVE REVENUE</span>
-                    <span style={{color: 'var(--gold)', fontWeight: 'bold', fontSize: '0.8rem'}}>+14.2% YIELD</span>
+                   <span className="asset-tag" style={{background: 'var(--blue)', color: 'white', padding: '5px 10px', fontSize: '0.6rem', borderRadius: '4px', fontWeight: 'bold'}}>ACTIVE REVENUE</span>
+                   <span style={{color: 'var(--gold)', fontWeight: 'bold', fontSize: '0.8rem'}}>+14.2% YIELD</span>
                 </div>
               </div>
               <div className="portfolio-card" style={{background: '#f9f9f9', padding: '30px', borderRadius: '8px', border: '1px solid #eee'}}>
                 <h3 style={{color: 'var(--blue)', fontSize: '1.2rem', marginBottom: '10px'}}>Sovereign Nodes</h3>
                 <p style={{fontSize: '0.85rem', color: '#666', lineHeight: '1.6'}}>Physical hardware clusters in offshore jurisdictions. Provides the "Logic" backbone for the network.</p>
                 <div style={{marginTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                    <span className="asset-tag" style={{background: '#555', color: 'white', padding: '5px 10px', fontSize: '0.6rem', borderRadius: '4px', fontWeight: 'bold'}}>HARD ASSET</span>
-                    <span style={{color: '#888', fontSize: '0.8rem'}}>98% CAPACITY</span>
+                   <span className="asset-tag" style={{background: '#555', color: 'white', padding: '5px 10px', fontSize: '0.6rem', borderRadius: '4px', fontWeight: 'bold'}}>HARD ASSET</span>
+                   <span style={{color: '#888', fontSize: '0.8rem'}}>98% CAPACITY</span>
                 </div>
               </div>
               <div className="portfolio-card" style={{background: '#f9f9f9', padding: '30px', borderRadius: '8px', border: '1px solid #eee'}}>
                 <h3 style={{color: 'var(--blue)', fontSize: '1.2rem', marginBottom: '10px'}}>Stability Vault</h3>
                 <p style={{fontSize: '0.85rem', color: '#666', lineHeight: '1.6'}}>A 30,000,000 $STAR buffer designed to maintain protocol equilibrium and absorb market volatility.</p>
                 <div style={{marginTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                    <span className="asset-tag" style={{background: '#dcdcdc', color: '#555', padding: '5px 10px', fontSize: '0.6rem', borderRadius: '4px', fontWeight: 'bold'}}>SYSTEMIC BUFFER</span>
-                    <span style={{color: '#888', fontSize: '0.8rem'}}>LOCKED</span>
+                   <span className="asset-tag" style={{background: '#dcdcdc', color: '#555', padding: '5px 10px', fontSize: '0.6rem', borderRadius: '4px', fontWeight: 'bold'}}>SYSTEMIC BUFFER</span>
+                   <span style={{color: '#888', fontSize: '0.8rem'}}>LOCKED</span>
                 </div>
               </div>
             </div>
@@ -142,12 +137,7 @@ function App({ section }) {
                   <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                     <div>
                       <span style={{fontSize: '0.7rem', opacity: 0.8, letterSpacing: '1px'}}>ALLOCATION (USD)</span>
-                      <input 
-                        type="number" 
-                        value={calcInput} 
-                        onChange={(e) => setCalcInput(e.target.value)}
-                        style={{background: 'transparent', border: 'none', borderBottom: '2px solid var(--gold)', color: 'white', fontSize: '2rem', fontWeight: '800', width: '150px', outline: 'none', marginTop: '5px'}}
-                      />
+                      <input type="number" value={calcInput} onChange={(e) => setCalcInput(e.target.value)} style={{background: 'transparent', border: 'none', borderBottom: '2px solid var(--gold)', color: 'white', fontSize: '2rem', fontWeight: '800', width: '150px', outline: 'none', marginTop: '5px'}} />
                     </div>
                     <div style={{textAlign: 'right'}}>
                       <span style={{fontSize: '0.7rem', opacity: 0.8, letterSpacing: '1px'}}>ESTIMATED STAR FUEL</span>
@@ -181,6 +171,17 @@ function App({ section }) {
                       </div>
                     </div>
                   </div>
+                </div>
+
+                <div className="risk-disclosure" style={{background: '#fff0f0', padding: '20px', borderRadius: '8px', border: '1px solid #ffcccc', marginBottom: '40px'}}>
+                  <h4 style={{color: '#cc0000', marginBottom: '10px', fontSize: '0.9rem'}}>RISK DISCLOSURE</h4>
+                  <p style={{fontSize: '0.75rem', color: '#666', lineHeight: '1.6'}}>
+                    Participation in early-stage protocol infrastructure involves a high degree of risk, including the potential loss of the entire principal contribution. 
+                    Astranovara is an experimental financial technology venture. Past performance or simulated market metrics (such as "Logic Pulses" or "Yield") are 
+                    for demonstrative purposes only and do not guarantee future results. There is no assurance of token appreciation, liquidity, or regulatory 
+                    compliance in all jurisdictions. By proceeding, you acknowledge that you have conducted your own due diligence and assume full responsibility 
+                    for your financial decisions.
+                  </p>
                 </div>
               </>
             )}
