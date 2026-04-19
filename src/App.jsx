@@ -9,12 +9,14 @@ function App({ section }) {
   const [daysLeft, setDaysLeft] = useState(0);
   const [copied, setCopied] = useState('');
   const [calcInput, setCalcInput] = useState(1000);
+  const [txLog, setTxLog] = useState('INITIALIZING...');
 
   useEffect(() => {
-    // Live Pulse Simulation
+    // Live Pulse & TX Simulation
     const interval = setInterval(() => {
       setPulses(prev => prev + Math.floor(Math.random() * 3));
       setProfit(prev => prev + (Math.random() * 0.05));
+      setTxLog(`> ${Math.random().toString(36).substring(7).toUpperCase()}: $${(Math.random()*100).toFixed(2)} CAPTURED`);
     }, 2000);
 
     // Countdown Logic to May 17, 2026
@@ -46,25 +48,24 @@ function App({ section }) {
     setTimeout(() => setCopied(''), 2000);
   };
 
-  const renderContent = () => {
-    // FOUNDER-FIRST PRICING LOGIC ($0.14 START)
-    const launchDate = new Date("2026-04-18");
-    const today = new Date();
-    const diffInDays = Math.floor((today - launchDate) / (1000 * 60 * 60 * 24));
-    
-    let currentPrice, phaseName, nextPrice, progressWidth, daysUntilNext;
-    
-    if (diffInDays <= 14) {
-      currentPrice = 0.14; phaseName = "PHASE 0: GENESIS"; nextPrice = 0.22;
-      progressWidth = (diffInDays / 14) * 100; daysUntilNext = 14 - diffInDays;
-    } else if (diffInDays <= 25) {
-      currentPrice = 0.22; phaseName = "PHASE 1: GROWTH"; nextPrice = 0.35;
-      progressWidth = ((diffInDays - 14) / 11) * 100; daysUntilNext = 25 - diffInDays;
-    } else {
-      currentPrice = 0.35; phaseName = "PHASE 2: FINALITY"; nextPrice = "LOCKED";
-      progressWidth = 100; daysUntilNext = 30 - diffInDays;
-    }
+  // Logic Helpers
+  const launchDate = new Date("2026-04-18");
+  const today = new Date();
+  const diffInDays = Math.floor((today - launchDate) / (1000 * 60 * 60 * 24));
+  let currentPrice, phaseName, nextPrice, progressWidth, daysUntilNext;
+  
+  if (diffInDays <= 14) {
+    currentPrice = 0.14; phaseName = "PHASE 0: GENESIS"; nextPrice = 0.22;
+    progressWidth = (diffInDays / 14) * 100; daysUntilNext = 14 - diffInDays;
+  } else if (diffInDays <= 25) {
+    currentPrice = 0.22; phaseName = "PHASE 1: GROWTH"; nextPrice = 0.35;
+    progressWidth = ((diffInDays - 14) / 11) * 100; daysUntilNext = 25 - diffInDays;
+  } else {
+    currentPrice = 0.35; phaseName = "PHASE 2: FINALITY"; nextPrice = "LOCKED";
+    progressWidth = 100; daysUntilNext = 30 - diffInDays;
+  }
 
+  const renderContent = () => {
     switch (section) {
       case 'about':
         return (
@@ -92,6 +93,10 @@ function App({ section }) {
               <div className="portfolio-card" style={{background: '#f9f9f9', padding: '30px', borderRadius: '8px', border: '1px solid #eee'}}>
                 <h3 style={{color: 'var(--blue)', fontSize: '1.2rem', marginBottom: '10px'}}>The Logic Plug</h3>
                 <p style={{fontSize: '0.85rem', color: '#666', lineHeight: '1.6'}}>Universal API fee capture engine. Intercepts micro-fees across global cross-border transmissions.</p>
+                <div style={{marginTop: '15px', background: '#000', padding: '10px', borderRadius: '4px'}}>
+                   <div style={{fontSize: '0.6rem', color: '#00ff41', marginBottom: '5px'}}>LIVE TRANSACTION FEED:</div>
+                   <div style={{color: '#fff', fontSize: '0.7rem', fontFamily: 'monospace'}}>{txLog}</div>
+                </div>
                 <div style={{marginTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                     <span className="asset-tag" style={{background: 'var(--blue)', color: 'white', padding: '5px 10px', fontSize: '0.6rem', borderRadius: '4px', fontWeight: 'bold'}}>ACTIVE REVENUE</span>
                     <span style={{color: 'var(--gold)', fontWeight: 'bold', fontSize: '0.8rem'}}>+14.2% YIELD</span>
@@ -205,7 +210,9 @@ function App({ section }) {
               <div className="ticker-item"><span className="label">YIELD (USD)</span><span className="value gold-text">${profit.toFixed(2)}</span></div>
               <div className="ticker-item"><span className="label">DAYS REMAINING</span><span className="value" style={{color: '#ff4d4d'}}>{daysLeft}</span></div>
             </div>
-            <Link to="/investors" className="spectacular-btn" style={{textDecoration:'none', maxWidth: '400px', margin: '0 auto'}}>SECURE POSITION</Link>
+            <Link to="/investors" className="spectacular-btn" style={{textDecoration:'none', maxWidth: '400px', margin: '0 auto'}}>
+              SECURE GENESIS SLOT
+            </Link>
           </div>
         );
     }
@@ -213,6 +220,11 @@ function App({ section }) {
 
   return (
     <div className="app-container">
+      <div style={{background: '#1a1a1a', color: '#00ff41', padding: '8px 20px', fontSize: '0.65rem', display: 'flex', justifyContent: 'space-between', textTransform: 'uppercase', letterSpacing: '2px', borderBottom: '1px solid #333'}}>
+        <span>NODE CLUSTER: <span style={{color: '#fff'}}>ONLINE</span></span>
+        <span>SYNC STATUS: <span style={{color: '#fff'}}>SYNCHRONIZED</span></span>
+        <span>PULSE LATENCY: <span style={{color: '#fff'}}>0.42MS</span></span>
+      </div>
       <nav className="navbar">
         <Link to="/" className="nav-logo">ASTRANOVARA</Link>
         <div className="nav-links">
