@@ -129,3 +129,33 @@ body {
 
 .success-msg { text-align: center; padding: 20px; }
 
+/* --- Mobile Responsive Overrides --- */
+@media (max-width: 768px) {
+  .main-stage { padding-top: 100px; padding-bottom: 50px; }
+  
+  .main-logo-text { font-size: 2.5rem !important; letter-spacing: 5px !important; }
+  .hero-subtitle { font-size: 0.8rem; letter-spacing: 2px; }
+  
+  .live-ticker-panel { 
+    flex-direction: column; 
+    gap: 30px; 
+    padding: 30px 20px; 
+    margin: 30px 10px;
+  }
+  
+  .ticker-item .value { font-size: 2rem; }
+  
+  .investor-layout { grid-template-columns: 1fr !important; gap: 20px !important; }
+  
+  .navbar { padding: 15px 5%; }
+  .nav-links a { margin-left: 15px; font-size: 0.7rem; }
+  
+  .section-wrap { padding: 20px; }
+  .anchor-text { font-size: 1.8rem; }
+}
+
+/* Ensure images and containers don't overflow */
+img, video, .portfolio-grid {
+  max-width: 100%;
+  box-sizing: border-box;
+}
