@@ -122,7 +122,7 @@ function App({ section }) {
           <div className="section-wrap">
             <h2 className="anchor-text">Protocol Enrollment</h2>
             <div className="protocol-notice" style={{background: '#e3f2fd', border: '1px solid #bbdefb', padding: '15px', borderRadius: '4px', marginBottom: '30px', fontSize: '0.8rem', color: '#0d47a1', fontWeight: '700', textAlign: 'center'}}>
-              PROTOCOL NOTICE: ASTRANOVARA WELCOMES PARTICIPATION FROM BOTH INSTITUTIONAL PARTNERS AND INDIVIDUAL CONTRIBUTORS.
+              PROTOCOL NOTICE: ASTRANOVARA WELCOMES PARTICIPATION FROM BOTH INSTITUTIONAL PARTNERS AND INDIVIDUAL PARTICIPANTS.
             </div>
  
             {status === 'success' ? (
