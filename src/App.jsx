@@ -65,13 +65,13 @@ function App({ section }) {
         return (
           <div className="section-wrap">
             <span className="section-title">CORPORATE SYNOPSIS</span>
-            <h2 className="anchor-text">The Astranovara Mandate</h2>
-            <p className="story-text"><strong>Founder-Market Fit & Edge:</strong> Astranovara replaces legacy fragmented logistics with a proprietary logic layer. Our competitive advantage is our unique high-throughput data sovereign pipeline, which provides a sub-millisecond engineering edge over traditional systems.</p>
+            <h2 className="anchor-text">Astranovara: The Neural Foundation</h2>
+            <p className="story-text"><strong>Core Vision:</strong> Astranovara is the sovereign logic layer for global commerce. We are decoupling the movement of value from the constraints of legacy infrastructure, creating a unified mesh where digital intent meets physical fulfillment.</p>
             <div className="mission-grid">
-              <div className="manifesto-item"><h3>Procurement Logic</h3><p>Optimized tracking for all incoming and outgoing supply chain assets.</p></div>
-              <div className="manifesto-item"><h3>Logistics Backbone</h3><p>Integrating robust ledger management to ensure zero-friction clearance.</p></div>
-              <div className="manifesto-item"><h3>Operational Flow</h3><p>Real-time synchronization of inventory data across all internal nodes.</p></div>
-              <div className="manifesto-item"><h3>Hard Assets</h3><p>Triple-redundant data centers in sovereign jurisdictions. Permanent, immutable, verified.</p></div>
+              <div className="manifesto-item"><h3>Neural Synchronization</h3><p>We provide the high-throughput engine necessary for modern, AI-augmented logistics, translating complex digital inputs into real-time settlement.</p></div>
+              <div className="manifesto-item"><h3>Invisible Integration</h3><p>Our infrastructure serves as the proprietary connective tissue for critical digital environments, operating as an abstraction layer for enterprise-grade execution.</p></div>
+              <div className="manifesto-item"><h3>Operational Sovereignty</h3><p>By capturing intent at the point of origin, we eliminate the friction that plagues traditional trade. Our specific logic sequences remain proprietary and internal to our network.</p></div>
+              <div className="manifesto-item"><h3>Global Mesh</h3><p>Astranovara is the universal backbone of procurement, ensuring capital and goods move with the speed of data and the certainty of sovereign law.</p></div>
             </div>
           </div>
         );
@@ -90,27 +90,27 @@ function App({ section }) {
  
             <div className="portfolio-grid" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px', marginTop: '30px'}}>
               <div className="portfolio-card" style={{background: '#f9f9f9', padding: '30px', borderRadius: '8px', border: '1px solid #eee'}}>
-                <h3 style={{color: 'var(--blue)', fontSize: '1.2rem', marginBottom: '10px'}}>Ledger Control</h3>
-                <p style={{fontSize: '0.85rem', color: '#666', lineHeight: '1.6'}}>Proven Module: Automated trial balance and depreciation engine currently live.</p>
+                <h3 style={{color: 'var(--blue)', fontSize: '1.2rem', marginBottom: '10px'}}>Neural Ledger</h3>
+                <p style={{fontSize: '0.85rem', color: '#666', lineHeight: '1.6'}}>Automated settlement engine currently managing high-velocity trade inputs across our internal nodes.</p>
                 <div style={{marginTop: '15px', background: '#000', padding: '10px', borderRadius: '4px'}}>
                   <div style={{fontSize: '0.6rem', color: '#00ff41', marginBottom: '5px'}}>TRANSACTION LOG:</div>
                   <div style={{color: '#fff', fontSize: '0.7rem', fontFamily: 'monospace'}}>{txLog}</div>
                 </div>
               </div>
               <div className="portfolio-card" style={{background: '#f9f9f9', padding: '30px', borderRadius: '8px', border: '1px solid #eee'}}>
-                <h3 style={{color: 'var(--blue)', fontSize: '1.2rem', marginBottom: '10px'}}>Route Mapping</h3>
-                <p style={{fontSize: '0.85rem', color: '#666', lineHeight: '1.6'}}>Proven Module: End-to-end shipment visualization for global procurement nodes.</p>
+                <h3 style={{color: 'var(--blue)', fontSize: '1.2rem', marginBottom: '10px'}}>Protocol Resilience</h3>
+                <p style={{fontSize: '0.85rem', color: '#666', lineHeight: '1.6'}}>Triple-redundant sovereign data infrastructure. Permanent, immutable, and audit-ready.</p>
                 <div style={{marginTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                  <span className="asset-tag" style={{background: '#555', color: 'white', padding: '5px 10px', fontSize: '0.6rem', borderRadius: '4px', fontWeight: 'bold'}}>HARD ASSET</span>
-                  <span style={{color: '#888', fontSize: '0.8rem'}}>98% CAPACITY</span>
+                  <span className="asset-tag" style={{background: '#555', color: 'white', padding: '5px 10px', fontSize: '0.6rem', borderRadius: '4px', fontWeight: 'bold'}}>SOVEREIGN DATA</span>
+                  <span style={{color: '#888', fontSize: '0.8rem'}}>100% SECURE</span>
                 </div>
               </div>
               <div className="portfolio-card" style={{background: '#f9f9f9', padding: '30px', borderRadius: '8px', border: '1px solid #eee'}}>
-                <h3 style={{color: 'var(--blue)', fontSize: '1.2rem', marginBottom: '10px'}}>Systemic Buffer</h3>
-                <p style={{fontSize: '0.85rem', color: '#666', lineHeight: '1.6'}}>Secured 30,000,000 $STAR reserve, irrevocably locked to ensure protocol equilibrium.</p>
+                <h3 style={{color: 'var(--blue)', fontSize: '1.2rem', marginBottom: '10px'}}>Reserve Equilibrium</h3>
+                <p style={{fontSize: '0.85rem', color: '#666', lineHeight: '1.6'}}>30,000,000 $STAR reserve allocated to Founder/Protocol stability, irrevocably locked within our sovereign smart contract architecture.</p>
                 <div style={{marginTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                  <span className="asset-tag" style={{background: '#dcdcdc', color: '#555', padding: '5px 10px', fontSize: '0.6rem', borderRadius: '4px', fontWeight: 'bold'}}>SECURED</span>
-                  <span style={{color: '#888', fontSize: '0.8rem'}}>LOCKED</span>
+                  <span className="asset-tag" style={{background: '#c5a059', color: 'white', padding: '5px 10px', fontSize: '0.6rem', borderRadius: '4px', fontWeight: 'bold'}}>LOCKED RESERVE</span>
+                  <span style={{color: '#888', fontSize: '0.8rem'}}>STABLE</span>
                 </div>
               </div>
             </div>
@@ -156,7 +156,7 @@ function App({ section }) {
                       <input name="Email" type="email" placeholder="EMAIL ADDRESS" required />
                       <input name="Wallet" type="text" placeholder="RECEIVING ADDRESS" required />
                       <input name="Allocation" type="number" value={calcInput} readOnly style={{background: '#f0f0f0', color: '#888'}} />
-                      <button type="submit" className="spectacular-btn">{status === 'loading' ? 'PROCESSING...' : 'FINALIZE ALLOCATION'}</button>
+                      <button type="submit" className="spectacular-btn">{status === 'loading' ? 'PROCESSING...' : 'Foundation Access'}</button>
                     </form>
                   </div>
                 </div>
@@ -164,7 +164,7 @@ function App({ section }) {
             )}
             
             <div style={{marginTop: '40px', padding: '20px', background: '#f9f9f9', fontSize: '0.75rem', color: '#555', border: '1px solid #eee'}}>
-              <strong>GENERAL INFORMATION:</strong> Astranovara aims to provide a transparent and accessible framework for all participants. By engaging with this protocol, users acknowledge the dynamic nature of early-stage project development. We recommend that all contributors conduct their own review of our roadmap and objectives before participating.
+              <strong>DISCLAIMER & PROTOCOL RISKS:</strong> Astranovara is an experimental, early-stage infrastructure project. Engaging with this protocol involves significant risk. The $STAR token is a utility credit strictly for the consumption of services within our synchronization network. It is not an investment contract, and participants have no expectation of profit from the efforts of others. Technology and operational environments are subject to rapid change, and participants should conduct their own due diligence regarding the technical and systemic nature of these protocols before providing any contribution.
             </div>
             
             <div className="wallet-reveal">
@@ -211,7 +211,7 @@ function App({ section }) {
           <Link to="/">HOME</Link>
           <Link to="/about">ABOUT</Link>
           <Link to="/portfolio">PORTFOLIO</Link>
-          <Link to="/investors" className="investor-btn">INVESTOR</Link>
+          <Link to="/investors" className="investor-btn">Network Enrollment</Link>
         </div>
       </nav>
       <main className="main-stage">{renderContent()}</main>
